@@ -5,7 +5,8 @@ resource "aws_lambda_function" "{{API_NAME}}_Lambda" {
   role = "${aws_iam_role.{{API_NAME}}_Role.arn}"
   timeout = {{LAMBDA_TIMEOUT}}
   memory_size = {{LAMBDA_MEMORY}}
-  filename = "{{LAMBDA_ZIP}}"
+  filename = "${path.module}/../{{LAMBDA_ZIP}}"
+  source_code_hash = "${base64sha256(file("${path.module}/../{{LAMBDA_ZIP}}"))}"
 }
 
 {% for s in STAGES %}

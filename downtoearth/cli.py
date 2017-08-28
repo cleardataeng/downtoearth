@@ -30,7 +30,7 @@ def parse_args():
     generate_parser.set_defaults(execute_step=generate)
     deploy_parser = subparsers.add_parser(
         'deploy',
-        help='deploy lambda code to a stage'
+        help='publishes a new lambda versiona and then points an alias to that version based on the stage name'
     )
     deploy_parser.add_argument('input', help="dte.json configuration file")
     deploy_parser.add_argument('stage', help="stage to deploy lambda to")
